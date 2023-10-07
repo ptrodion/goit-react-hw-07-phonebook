@@ -1,25 +1,30 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { fetchContacts } from './operations';
 
 const contactsSlice = createSlice({
   name: 'changeContacts',
-  initialState: { items: [] },
-  reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.items.push(action.payload);
-      },
-      prepare(value) {
-        return {
-          payload: {
-            id: nanoid(5),
-            ...value,
-          },
-        };
-      },
-    },
-    deleteContact(state, action) {
-      state.items = state.items.filter(el => el.id !== action.payload);
-    },
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchContacts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(fetchContacts.rejected, (state, action) => {
+        state.isLoading = false;
+        console.log(action.error.name);
+        if (action.error.name !== 'CanceledError') {
+          alert(`Something was wrong.`);
+        }
+      });
   },
 });
 

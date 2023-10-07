@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
 export const FormStyle = styled(Form)`
-  width: 300px;
+  width: 500px;
   display: flex;
   justify-content: center;
   flex-direction: column;

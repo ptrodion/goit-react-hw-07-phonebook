@@ -14,3 +14,10 @@ export const ListItemButtonSt = styled.button`
   border: 1px solid #8b8ba4;
   border-radius: 4px;
 `;
+
+export const ContactsDate = styled.p`
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: ${props => props.theme.spacing(3)};
+`;
