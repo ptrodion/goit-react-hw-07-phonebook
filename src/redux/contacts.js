@@ -20,7 +20,6 @@ const contactsSlice = createSlice({
       })
       .addCase(fetchContacts.rejected, (state, action) => {
         state.isLoading = false;
-        console.log(action.error.name);
         if (action.error.name !== 'CanceledError') {
           alert(`Something was wrong.`);
         }
