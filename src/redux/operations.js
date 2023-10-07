@@ -15,23 +15,15 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async contactData => {
-    try {
-      const response = await axios.post('/contacts', contactData);
-      return response.data;
-    } catch (e) {
-      alert('The contact was not added, please contact support');
-    }
+    const response = await axios.post('/contacts', contactData);
+    return response.data;
   }
 );
 
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async id => {
-    try {
-      const response = await axios.delete(`/contacts/${id}`);
-      return response.data;
-    } catch (e) {
-      alert('The contact was not deleted, please contact support');
-    }
+    const response = await axios.delete(`/contacts/${id}`);
+    return response.data;
   }
 );
