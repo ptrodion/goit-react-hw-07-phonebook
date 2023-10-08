@@ -1,18 +1,19 @@
 import { ContactsItem } from 'components/ContactsItem/ContactsItem';
 import { ContactsWrapper, ContactsListSt } from './ContactsList.styles';
+import { useSelector } from 'react-redux';
+import { selectVisibleContacts } from 'redux/selectors';
 
-export const ContactsList = ({ isFilteredContacts }) => {
+export const ContactsList = () => {
+  const visibleContacts = useSelector(selectVisibleContacts);
   return (
     <ContactsWrapper>
-      {isFilteredContacts.length !== 0 && (
-        <>
-          <ContactsListSt>
-            {isFilteredContacts.map(item => (
-              <ContactsItem key={item.id} item={item} />
-            ))}
-          </ContactsListSt>
-        </>
-      )}
+      <>
+        <ContactsListSt>
+          {visibleContacts.map(item => (
+            <ContactsItem key={item.id} item={item} />
+          ))}
+        </ContactsListSt>
+      </>
     </ContactsWrapper>
   );
 };
